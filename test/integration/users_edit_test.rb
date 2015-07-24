@@ -31,4 +31,15 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal @user.name,  name
     assert_equal @user.email, email
   end
+  
+  test "only forwarding to saved url at first login" do
+    get edit_user_path(@user)
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    log_out_current_user
+    assert_redirected_to root_url
+    log_in_as(@user)
+    assert_redirected_to @user
+  end
+  
 end
