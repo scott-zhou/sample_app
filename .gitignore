@@ -21,3 +21,5 @@
 
 # Ignor aptana project file
 .project
+
+*~
